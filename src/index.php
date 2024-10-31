@@ -5,7 +5,7 @@ require_once 'ExchangeController.php';
 use App\ExchangeController;
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$pathComponents = explode('/', trim($path, '/'));
+$pathComponents = explode('/', trim((string) $path, '/'));  // Cast para string
 
 if (count($pathComponents) !== 5 || $pathComponents[0] !== 'exchange') {
     http_response_code(400);

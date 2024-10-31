@@ -6,13 +6,23 @@ use Exception;
 
 class ExchangeController
 {
-    private $currencySymbols = [
+    /** @var array<string, string> */
+    private array $currencySymbols = [
         'USD' => '$',
         'BRL' => 'R$',
         'EUR' => '€'
     ];
 
-    public function convert($amount, $from, $to, $rate)
+    /**
+     * Converte o valor com base na taxa de câmbio
+     *
+     * @param float $amount Quantidade a ser convertida
+     * @param string $from Moeda de origem
+     * @param string $to Moeda de destino
+     * @param float $rate Taxa de câmbio
+     * @return array<string, float|string> Valor convertido e símbolo da moeda
+     */
+    public function convert(float $amount, string $from, string $to, float $rate): array
     {
         $convertedValue = $amount * $rate;
 
